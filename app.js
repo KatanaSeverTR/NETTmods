@@ -1,64 +1,21 @@
-// NETTmods - E-Commerce & Subscription Client Logic
+// NETTmods - Digital Products & Source Code Marketplace Client Logic
 
 let currentSelectedPlan = {
     tier: 2,
-    name: "Ticaret & Bilet",
-    price: 650
+    name: "Ticaret & Steam Bilet Altyapısı",
+    price: 349
 };
-let isAnnualBilling = false;
 
 document.addEventListener('DOMContentLoaded', () => {
-    initBillingToggle();
     initFAQ();
     initMobileMenu();
 });
 
-// 1. Monthly / Annual Billing Toggle (%20 Discount)
-function initBillingToggle() {
-    const toggle = document.getElementById('billingToggle');
-    const priceElements = document.querySelectorAll('.price-val');
-    const annualNotes = document.querySelectorAll('.annual-note');
-
-    if (!toggle) return;
-
-    toggle.addEventListener('change', () => {
-        isAnnualBilling = toggle.checked;
-
-        priceElements.forEach(el => {
-            const monthly = el.getAttribute('data-monthly');
-            const annual = el.getAttribute('data-annual');
-            el.innerText = isAnnualBilling ? annual : monthly;
-        });
-
-        annualNotes.forEach(el => {
-            el.style.display = isAnnualBilling ? 'block' : 'none';
-        });
-    });
-}
-
-// 2. Open Subscription Modal
-function startSubscription(tier, planName) {
+// 1. Open Purchase / Checkout Modal
+function startPurchase(tier, planName, price) {
     currentSelectedPlan.tier = tier;
     currentSelectedPlan.name = planName;
-
-    let finalPrice = 199;
-    let period = "TL / ay";
-
-    if (tier === 4) {
-        finalPrice = 1499;
-        period = "TL (Ömür Boyu Tek Seferlik)";
-    } else if (tier === 1) {
-        finalPrice = isAnnualBilling ? 99 : 199;
-        period = isAnnualBilling ? "TL / ay (Yıllık)" : "TL / ay";
-    } else if (tier === 2) {
-        finalPrice = isAnnualBilling ? 199 : 349;
-        period = isAnnualBilling ? "TL / ay (Yıllık)" : "TL / ay";
-    } else if (tier === 3) {
-        finalPrice = isAnnualBilling ? 299 : 499;
-        period = isAnnualBilling ? "TL / ay (Yıllık)" : "TL / ay";
-    }
-
-    currentSelectedPlan.price = finalPrice;
+    currentSelectedPlan.price = price;
 
     const modal = document.getElementById('checkoutModal');
     const modalTitle = document.getElementById('modalPlanTitle');
@@ -67,9 +24,9 @@ function startSubscription(tier, planName) {
     const successView = document.getElementById('orderSuccessView');
 
     if (modal && modalTitle && modalPrice) {
-        modalTitle.innerText = tier === 4 ? `👑 ${planName}` : `Seviye ${tier}: ${planName}`;
-        modalPrice.innerText = `${finalPrice} ${period}`;
-        
+        modalTitle.innerText = `📦 ${planName}`;
+        modalPrice.innerText = `${price} TL (Tek Seferlik • Ömür Boyu)`;
+
         // Reset view
         if (form) form.style.display = 'block';
         if (successView) successView.style.display = 'none';
@@ -83,75 +40,75 @@ function closeCheckoutModal() {
     if (modal) modal.classList.remove('active');
 }
 
-// 3. Handle Subscription Form Submission
-function handleSubscriptionSubmit(e) {
+// 2. Handle Purchase Form Submission
+let lastOrderSummary = "";
+
+function handlePurchaseSubmit(e) {
     e.preventDefault();
-    const guildId = document.getElementById('orderGuildId').value.trim();
     const discordUser = document.getElementById('orderDiscordUser').value.trim();
+    const email = document.getElementById('orderEmail').value.trim();
     const method = document.getElementById('paymentMethod').value;
 
-    if (!guildId || !discordUser) {
+    if (!discordUser || !email) {
         alert("Lütfen tüm zorunlu alanları doldurun.");
         return;
     }
 
-    // Generate random reference code
+    // Generate unique order reference code
     const randomCode = "NETT-" + Math.floor(1000 + Math.random() * 9000);
     document.getElementById('refCodeText').innerText = randomCode;
 
     let paymentInfoHtml = "";
     if (method === "pazaryeri") {
         paymentInfoHtml = `
-            <strong>🛒 Pazaryeri Güvencesi (Kredi Kartı / Taksit):</strong><br>
-            Banka hesabı veya şirket olmadan, 3D Secure kredi kartı ve taksitle güvenli satın alma bağlantılarımız:<br>
+            <strong>🛒 Pazaryeri Güvencesi (Kredi Kartı / Taksit / Anında İndirme):</strong><br>
+            Banka hesabı olmadan, 3D Secure kredi kartı ve taksit imkanıyla anında satın alma mağazalarımız:<br>
             • <a href="https://www.itemsatis.com" target="_blank" style="color:var(--primary); font-weight:bold; text-decoration:underline;">👉 İtemsatış Mağazamızdan Satın Al (${currentSelectedPlan.price} TL)</a><br>
             • <a href="https://www.gamesatis.com" target="_blank" style="color:var(--primary); font-weight:bold; text-decoration:underline;">👉 GameSatış Mağazamızdan Satın Al (${currentSelectedPlan.price} TL)</a><br>
             • <a href="https://www.bynogame.com" target="_blank" style="color:var(--primary); font-weight:bold; text-decoration:underline;">👉 ByNoGame Mağazamızdan Satın Al (${currentSelectedPlan.price} TL)</a><br>
-            <small style="color:var(--text-secondary); display:block; margin-top:6px;">Satın aldıktan sonra platformdaki Sipariş Numaranızı Discord sipariş masanıza veya destek biletinize iletmeniz yeterlidir. Bot anında lisanslanır.</small>
+            <small style="color:var(--text-secondary); display:block; margin-top:8px;">Satın aldığınızda ZIP arşiv indirme linki ve şifresi sistem tarafından otomatik olarak teslim edilir.</small>
         `;
     } else if (method === "fintech") {
         paymentInfoHtml = `
-            <strong>⚡ FinTech & Ön Ödemeli Kartlar (Sıfır Komisyon):</strong><br>
-            Genç ve kolay transfer cüzdanları ile 7/24 anında ödeme:<br>
+            <strong>⚡ FinTech & Cüzdanlar (Sıfır Komisyon • 7/24):</strong><br>
+            Genç ve pratik ödeme kanallarımız ile anında teslimat:<br>
             • <strong>Papara No:</strong> <code>1234567890</code><br>
-            • <strong>Tosla No / IBAN:</strong> <code>TR00 0000 0000 0000 0000 00</code><br>
-            • <strong>Nays / Paycell / FUPS:</strong> <code>0555 000 00 00</code><br>
+            • <strong>Tosla No:</strong> <code>TR00 0000 0000 0000 00</code><br>
+            • <strong>Nays / Paycell:</strong> <code>0555 000 00 00</code><br>
             • <strong>Tutar:</strong> ${currentSelectedPlan.price} TL<br>
             • <strong>Açıklama:</strong> <code>${randomCode}</code><br>
-            <small style="color:var(--primary); display:block; margin-top:6px;">Açıklama kısmına <strong>${randomCode}</strong> referans kodunuzu yazınız. Ödeme anında yetkili ekranına düşer.</small>
+            <small style="color:var(--primary); display:block; margin-top:8px;">Açıklama kısmına <strong>${randomCode}</strong> kodunu yazıp Discord destek biletine makbuzu ilettiğinizde ZIP arşiviniz 2 dakikada gönderilir.</small>
         `;
     } else if (method === "havale") {
         paymentInfoHtml = `
-            <strong>🏦 Banka / FAST / Havale (7/24 Anında Aktivasyon):</strong><br>
+            <strong>🏦 Banka / FAST / Havale (7/24 Kesintisiz):</strong><br>
             Tüm bankalardan saniyeler içinde masrafsız FAST transferi:<br>
             • <strong>IBAN:</strong> <code>TR00 0000 0000 0000 0000 0000 00</code><br>
-            • <strong>Alıcı:</strong> NETTmods Altyapı Yönetimi<br>
+            • <strong>Alıcı:</strong> NETTmods Dijital Altyapı<br>
             • <strong>Tutar:</strong> ${currentSelectedPlan.price} TL<br>
-            • <strong>Açıklama:</strong> <code>${randomCode} (${guildId})</code><br>
-            <small style="color:var(--primary); display:block; margin-top:6px;">Ödeme açıklamasına mutlaka referans kodunu yazınız. Lisansınız 2 dakikada otomatik onaylanır.</small>
+            • <strong>Açıklama:</strong> <code>${randomCode}</code><br>
+            <small style="color:var(--primary); display:block; margin-top:8px;">Ödeme açıklamasına mutlaka referans kodunu yazınız. Dekontu ilettiğiniz an ZIP arşivi ve GitHub repo davetiyeniz açılır.</small>
         `;
     } else {
         paymentInfoHtml = `
-            <strong>💎 Kripto Para (Sıfır Kesinti & Düşük Ağ Ücreti):</strong><br>
-            Kuruş düzeyinde transfer ücreti ile küresel ödeme:<br>
-            • <strong>USDT (TRC-20):</strong> <code>TXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</code> ($${Math.round(currentSelectedPlan.price / 35)} USDT)<br>
-            • <strong>USDT (BEP-20 / BSC):</strong> <code>0xXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</code> ($${Math.round(currentSelectedPlan.price / 35)} USDT)<br>
+            <strong>💎 Kripto Para (Düşük Ağ Ücreti):</strong><br>
+            Global ve gizli ödeme seçeneği:<br>
+            • <strong>USDT (TRC-20):</strong> <code>TXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</code> (~$${Math.round(currentSelectedPlan.price / 35)} USDT)<br>
+            • <strong>USDT (BEP-20):</strong> <code>0xXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</code> (~$${Math.round(currentSelectedPlan.price / 35)} USDT)<br>
             • <strong>Litecoin (LTC):</strong> <code>ltc1qxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</code> (~${(currentSelectedPlan.price / 35 / 75).toFixed(3)} LTC)<br>
-            <small style="color:var(--primary); display:block; margin-top:6px;">Ağ transferi onaylandıktan sonra TXID kodunu canlı destek biletinize iletiniz.</small>
+            <small style="color:var(--primary); display:block; margin-top:8px;">Transfer TXID kodunu Discord destek masamıza ilettiğinizde indirme linkiniz anında iletilir.</small>
         `;
     }
 
     document.getElementById('paymentDetailsBox').innerHTML = paymentInfoHtml;
 
     // Save order summary for 1-click clipboard copy
-    lastOrderSummary = `[NETTmods Sipariş] Referans: ${randomCode} | Paket: ${currentSelectedPlan.name} (${currentSelectedPlan.price} TL) | Sunucu ID: ${guildId} | Kullanıcı: ${discordUser}`;
+    lastOrderSummary = `[NETTmods Dijital Sipariş] Referans: ${randomCode} | Ürün: ${currentSelectedPlan.name} (${currentSelectedPlan.price} TL) | Kullanıcı: ${discordUser} | E-Posta: ${email}`;
 
-    // Show success view
+    // Switch to success view
     document.getElementById('subscriptionForm').style.display = 'none';
     document.getElementById('orderSuccessView').style.display = 'block';
 }
-
-let lastOrderSummary = "";
 
 function copyOrderSummary() {
     if (!lastOrderSummary) {
@@ -179,57 +136,24 @@ function copyFallback() {
     showToast("📋 Sipariş özeti panoya kopyalandı!");
 }
 
-// 4. Free Trial Modal
-function openTrialModal() {
-    const modal = document.getElementById('trialModal');
-    if (modal) modal.classList.add('active');
-}
-
-function closeTrialModal() {
-    const modal = document.getElementById('trialModal');
-    if (modal) modal.classList.remove('active');
-}
-
-// 5. Guvenilir Lisans Sorgulama Ekrani
-function checkLicense() {
-    const input = document.getElementById('guildIdInput');
-    const resultBox = document.getElementById('licenseResult');
-    const guildId = input.value.trim();
-
-    if (!guildId || !/^-?[0-9]{9,20}$/.test(guildId)) {
-        showToast("⚠️ Lütfen geçerli bir Discord Sunucu (18-19 hane) veya Telegram Grup ID (-100...) girin.");
-        return;
-    }
-
-    resultBox.style.display = 'block';
-    resultBox.innerHTML = `
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
-            <div>
-                <h4 style="color:var(--text-primary); margin-bottom:4px;">Sunucu / Grup Kimliği: <code>${guildId}</code></h4>
-                <p style="color:var(--primary); font-size:13px;">🔒 <strong>Güvenlik Kalkanı:</strong> Canlı lisans verileri üçüncü kişilere karşı gizlilik protokolüyle korunmaktadır.</p>
-                <p style="color:var(--text-secondary); font-size:12px;">Discord'da <code>!lisans-bilgi</code>, Telegram grubunuzda <code>/id</code> veya <code>/kurulum</code> komutunu kullanarak anlık sürenizi görebilirsiniz.</p>
-            </div>
-            <a href="#paketler" class="btn btn-primary btn-sm">Paket Seç / Yenile</a>
-        </div>
-    `;
-}
-
-// 6. FAQ Accordion Logic
+// 3. FAQ Accordion Logic
 function initFAQ() {
     const faqItems = document.querySelectorAll('.faq-item');
     faqItems.forEach(item => {
         const questionBtn = item.querySelector('.faq-question');
-        questionBtn.addEventListener('click', () => {
-            const isOpen = item.classList.contains('active');
-            faqItems.forEach(i => i.classList.remove('active'));
-            if (!isOpen) {
-                item.classList.add('active');
-            }
-        });
+        if (questionBtn) {
+            questionBtn.addEventListener('click', () => {
+                const isOpen = item.classList.contains('active');
+                faqItems.forEach(i => i.classList.remove('active'));
+                if (!isOpen) {
+                    item.classList.add('active');
+                }
+            });
+        }
     });
 }
 
-// 7. Mobile Menu
+// 4. Mobile Menu
 function initMobileMenu() {
     const btn = document.getElementById('mobileMenuBtn');
     const navLinks = document.querySelector('.nav-links');
@@ -255,9 +179,7 @@ function initMobileMenu() {
 // Close Modals on Outer Click
 window.addEventListener('click', (e) => {
     const checkout = document.getElementById('checkoutModal');
-    const trial = document.getElementById('trialModal');
     if (e.target === checkout) closeCheckoutModal();
-    if (e.target === trial) closeTrialModal();
 });
 
 // Toast Helper
@@ -270,7 +192,7 @@ function showToast(message) {
     }
 }
 
-// 8. Interactive Web Dashboard Simulation & State
+// 5. Interactive Web Dashboard Simulation & State
 const dashState = {
     aho: true,
     leet: true,
@@ -297,12 +219,11 @@ function updateDashState(key, isChecked) {
     const statusText = isChecked ? "Aktif Edildi 🟢" : "Devre Dışı Bırakıldı ⚪";
     showToast(`${labels[key] || key}: ${statusText}`);
 
-    // Update live status pill
     const statusEl = document.getElementById('dashLiveStatus');
     if (statusEl) {
-        statusEl.innerText = "Ayarlar Kaydedildi (Bulut Senkronize ⚡)";
+        statusEl.innerText = "Yerel Ayarlar Güncellendi ⚡";
         setTimeout(() => {
-            statusEl.innerText = "Canlı Bağlantı: Shard #01";
+            statusEl.innerText = "VDS Durumu: Çalışıyor (Port 8080)";
         }, 2000);
     }
 }
@@ -344,7 +265,7 @@ function openTranscriptModalDemo() {
                 <div class="avatar" style="background:#a4d007;">K</div>
                 <div class="bubble">
                     <div class="author">Kullanıcı (Mert) <span class="time">Bugün 14:15</span></div>
-                    <div class="text">Merhaba, sunucumuzda Leetspeak filtresini Seviye 3'e yükselttik, ancak özel bir rolü muaf tutmak istiyoruz.</div>
+                    <div class="text">Merhaba, sunucumuzda Leetspeak filtresini kurduk, ancak özel bir rolü muaf tutmak istiyoruz.</div>
                 </div>
             </div>
             <div class="msg">
@@ -363,4 +284,3 @@ function openTranscriptModalDemo() {
 </body>
 </html>`);
 }
-

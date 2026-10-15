@@ -1,23 +1,29 @@
 # 🌐 NETTmods
 
-> **Yüksek Hızlı Kurumsal Bot ve Topluluk Otomasyonu (BaaS)**  
-> Discord ve Telegram toplulukları için 7/24 kesintisiz güvenlik, ticaret ve yönetim kalkanı.
+> **Discord Bot Altyapıları & Hazır Dijital Kod Mağazası**  
+> Aylık bot kirası ödemeye son! Tam açık kaynak kodlu Discord Guard, Steam Bilet & Ticaret altyapısını tek seferlik satın alın; `install.sh` ile 30 saniyede kendi VDS'inize kurun ve ömür boyu ücretsiz çalıştırın.
 
 ---
 
-## ⚡ Özellikler
+## ⚡ Neden NETTmods Altyapısı?
 
-- 🛡️ **0 ms Metin & Leetspeak Kalkanı:** Küfür, reklam, spam ve flood saldırılarına karşı anında koruma.
-- 🔗 **Anti-Phishing & Sahte Link Filtresi:** Sahte Nitro ve kripto tuzaklarını anında tespit edip imha eder.
-- 🎫 **Steam Standartlarında Bilet Masası:** Otomatik müşteri rolü, dijital teslimat ve HTML transkript arşivi.
-- 📱 **Telegram Çift Yönlü Köprü:** Hem gruplar için kalkan hem de yönetici için cep telefonu üzerinden tek tıkla lisanslama.
-- ⚡ **Dedicated Cloud Node:** Kesintisiz, yüksek performanslı ve kurumsal altyapı.
+- 🛡️ **%100 Açık Kaynak Python Kodu:** Kodların tamamı sizin mülkiyetinizde olur. İstediğiniz gibi özelleştirin.
+- 💰 **Sıfır Aylık Maliyet:** Aylık lisans ücreti veya gizli abonelik yok. Bir kez satın alın, sonsuza kadar kullanın.
+- ⚡ **0.02 ms Aho-Corasick & Leetspeak Motoru:** Noktalı, boşluklu ve sembolik Türkçe küfür/reklam varyasyonlarını doğrusal O(n) hızda yakalar.
+- 🎫 **Steam Standartlarında Bilet Masası:** Ön teşhis formu (Triage modal), 15 dk geri sayımlı SLA sayacı, HTML transkript arşivi ve 5 yıldızlı CSAT anketi.
+- 🛒 **E-Ticaret & Otomatik Kod Satışı:** Dijital kod/key teslimatı, indirim kuponları ve günlük kasa muhasebe raporları.
+- 🚀 **1-Click Otomatik Kurulum:** Linux için `install.sh`, Windows için `install.bat` ile 30 saniyede hazır.
 
 ---
 
-## 🔒 Güvenlik ve Gizlilik
+## 📦 Paketler
 
-Bu proje ve beraberindeki servisler, topluluk güvenliğini en üst düzeyde tutmak amacıyla kurumsal standartlarda geliştirilmiştir.
+1. **Topluluk Sürümü (0 TL):** Temel açık kaynak Python iskeleti.
+2. **Paket 1: NETTmods Guard (199 TL - Tek Seferlik):** Tam Aho-Corasick & Leetspeak kalkanı, Anti-Raid karantina, 1-Click kurulum.
+3. **Paket 2: Ticaret & Steam Bilet (349 TL - Tek Seferlik):** Guard + Steam bilet triage + SLA sayacı + CSAT anketi + Key teslimat + Telegram köprüsü.
+4. **Paket 3: Enterprise Full Suite (499 TL - Tek Seferlik):** Tüm modüller + Web Dashboard kaynak kodu + Docker + PM2 cluster + 6h şifreli otomatik yedekleme + Sınırsız sunucu hakkı.
+5. **Ultimate FPS & Windows Optimizasyon Paketi (299 TL):** DPC latency & input lag düşürücü tweak koleksiyonu.
+6. **FiveM / MTA RP Script Paketi (499 TL):** 0.01 ms Resmon garantili hazır optimize rol yapma scriptleri.
 
 ---
 
