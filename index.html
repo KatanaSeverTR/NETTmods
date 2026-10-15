@@ -762,9 +762,21 @@
             <div class="modal-body">
                 <form id="subscriptionForm" onsubmit="handlePurchaseSubmit(event)">
                     <div class="form-group">
-                        <label for="orderDiscordUser">Discord veya Telegram Kullanıcı Adınız <span class="required">*</span></label>
-                        <input type="text" id="orderDiscordUser" required placeholder="Örn: patron#0001 veya @kullaniciadi">
-                        <small>Satın aldığınızda ZIP indirme bağlantısı ve destek bu hesaba iletilecektir.</small>
+                        <label for="orderGuildId">1. Kurulacak Resmi Discord Sunucu ID & Tahmini Üye Sayısı <span class="required">*</span></label>
+                        <input type="text" id="orderGuildId" required placeholder="Örn: 984712039485720194 (Tahmini 2.500 Üye)">
+                        <small>Yazılım bu sunucu kimliğine (Guild ID) kilitlenecektir.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="orderUsagePurpose">2. Kullanım Amacınız <span class="required">*</span></label>
+                        <select id="orderUsagePurpose" class="form-select" required>
+                            <option value="kisisel" selected>🛡️ Kendi topluluğum / oyun sunucum için kullanacağım</option>
+                            <option value="ticari">💼 Üçüncü şahıslara ticari hizmet / kurulum sağlayacağım</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="orderDiscordUser">3. Sunucu Yetkilisi Discord Kullanıcı Adı veya ID <span class="required">*</span></label>
+                        <input type="text" id="orderDiscordUser" required placeholder="Örn: patron#0001 veya 789123456789012345">
+                        <small>ZIP indirme bağlantısı ve teknik destek bu hesaba tanımlanacaktır.</small>
                     </div>
                     <div class="form-group">
                         <label for="orderEmail">E-Posta Adresiniz (ZIP İndirme Linki İçin) <span class="required">*</span></label>
@@ -778,6 +790,17 @@
                             <option value="fintech">⚡ FinTech (Papara / Tosla / Nays / Paycell)</option>
                             <option value="kripto">💎 Kripto Para (USDT TRC20 / BEP20 / Litecoin LTC)</option>
                         </select>
+                    </div>
+
+                    <!-- Psychological Legal Contract Checkbox -->
+                    <div class="form-group agreement-box" style="background:rgba(239,68,68,0.06); border:1px solid rgba(239,68,68,0.3); border-radius:10px; padding:12px; margin-top:12px; margin-bottom:18px;">
+                        <label style="display:flex; align-items:flex-start; gap:10px; cursor:pointer; font-size:12.5px; line-height:1.5; color:#fca5a5;">
+                            <input type="checkbox" id="orderAgreement" required style="margin-top:3px; accent-color:var(--primary); cursor:pointer;">
+                            <span>
+                                <strong>⚖️ Lisans & Kullanım Sözleşmesi Şartı:</strong><br>
+                                "Bu yazılım yalnızca tek bir lisanslı sunucu kimliği (Guild ID) için derlenmiştir. Kaynak kodların dağıtılması, parçalanması veya üçüncü şahıslara yeniden satılması durumunda donanım/sunucu lisansı uzaktan tek taraflı feshedilir ve yazılım devre dışı bırakılır." Şartları okudum ve kabul ediyorum.
+                            </span>
+                        </label>
                     </div>
 
                     <div class="checkout-actions">

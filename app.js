@@ -45,12 +45,20 @@ let lastOrderSummary = "";
 
 function handlePurchaseSubmit(e) {
     e.preventDefault();
+    const guildId = document.getElementById('orderGuildId').value.trim();
+    const usagePurpose = document.getElementById('orderUsagePurpose').value;
     const discordUser = document.getElementById('orderDiscordUser').value.trim();
     const email = document.getElementById('orderEmail').value.trim();
     const method = document.getElementById('paymentMethod').value;
+    const agreement = document.getElementById('orderAgreement');
 
-    if (!discordUser || !email) {
+    if (!guildId || !discordUser || !email) {
         alert("Lütfen tüm zorunlu alanları doldurun.");
+        return;
+    }
+
+    if (!agreement || !agreement.checked) {
+        alert("Lütfen devam etmeden önce Lisans & Kullanım Sözleşmesi şartını onaylayınız.");
         return;
     }
 
@@ -103,7 +111,8 @@ function handlePurchaseSubmit(e) {
     document.getElementById('paymentDetailsBox').innerHTML = paymentInfoHtml;
 
     // Save order summary for 1-click clipboard copy
-    lastOrderSummary = `[NETTmods Dijital Sipariş] Referans: ${randomCode} | Ürün: ${currentSelectedPlan.name} (${currentSelectedPlan.price} TL) | Kullanıcı: ${discordUser} | E-Posta: ${email}`;
+    const purposeText = usagePurpose === "kisisel" ? "Kişisel Topluluk" : "Ticari Hizmet";
+    lastOrderSummary = `[NETTmods Lisans Siparişi] Ref: ${randomCode} | Ürün: ${currentSelectedPlan.name} (${currentSelectedPlan.price} TL) | Sunucu ID: ${guildId} | Amaç: ${purposeText} | Yetkili: ${discordUser} | E-Posta: ${email} | Lisans Sözleşmesi: Onaylandı`;
 
     // Switch to success view
     document.getElementById('subscriptionForm').style.display = 'none';
