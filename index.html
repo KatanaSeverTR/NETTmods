@@ -440,8 +440,14 @@
                     <div class="payment-instructions" id="paymentDetailsBox">
                         <!-- Filled dynamically -->
                     </div>
-                    <a href="https://discord.com/api/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=8&scope=bot" target="_blank" class="btn btn-discord btn-block" style="margin-top:15px;">
+                    <button type="button" class="btn btn-secondary btn-block" onclick="copyOrderSummary()" style="margin-top:12px;">
+                        <i class="fa-solid fa-copy"></i> 📋 Sipariş Kodunu Kopyala (Bilete Yapıştır)
+                    </button>
+                    <a href="https://discord.com/api/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=8&scope=bot" target="_blank" class="btn btn-discord btn-block" style="margin-top:10px;">
                         <i class="fa-solid fa-robot"></i> 1. Botu Sunucuna Ekle
+                    </a>
+                    <a href="https://discord.gg" target="_blank" class="btn btn-primary btn-block" style="margin-top:10px;">
+                        <i class="fa-brands fa-discord"></i> 2. Discord Biletinde Onayla
                     </a>
                 </div>
             </div>

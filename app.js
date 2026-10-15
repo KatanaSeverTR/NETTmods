@@ -130,9 +130,40 @@ function handleSubscriptionSubmit(e) {
 
     document.getElementById('paymentDetailsBox').innerHTML = paymentInfoHtml;
 
+    // Save order summary for 1-click clipboard copy
+    lastOrderSummary = `[NETTmods Sipariş] Referans: ${randomCode} | Paket: ${currentSelectedPlan.name} (${currentSelectedPlan.price} TL) | Sunucu ID: ${guildId} | Kullanıcı: ${discordUser}`;
+
     // Show success view
     document.getElementById('subscriptionForm').style.display = 'none';
     document.getElementById('orderSuccessView').style.display = 'block';
+}
+
+let lastOrderSummary = "";
+
+function copyOrderSummary() {
+    if (!lastOrderSummary) {
+        showToast("⚠️ Kopyalanacak sipariş detayı bulunamadı.");
+        return;
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(lastOrderSummary).then(() => {
+            showToast("📋 Sipariş özeti panoya kopyalandı! Discord biletine yapıştırabilirsiniz.");
+        }).catch(() => {
+            copyFallback();
+        });
+    } else {
+        copyFallback();
+    }
+}
+
+function copyFallback() {
+    const temp = document.createElement("textarea");
+    temp.value = lastOrderSummary;
+    document.body.appendChild(temp);
+    temp.select();
+    document.execCommand("copy");
+    document.body.removeChild(temp);
+    showToast("📋 Sipariş özeti panoya kopyalandı!");
 }
 
 // 4. Free Trial Modal
@@ -146,26 +177,26 @@ function closeTrialModal() {
     if (modal) modal.classList.remove('active');
 }
 
-// 5. License Status Checker Simulation
+// 5. Guvenilir Lisans Sorgulama Ekrani
 function checkLicense() {
     const input = document.getElementById('guildIdInput');
     const resultBox = document.getElementById('licenseResult');
     const guildId = input.value.trim();
 
-    if (!guildId || guildId.length < 15) {
-        showToast("⚠️ Lütfen geçerli bir Discord Sunucu Kimliği (Guild ID) girin.");
+    if (!guildId || !/^[0-9]{17,20}$/.test(guildId)) {
+        showToast("⚠️ Lütfen geçerli 18-19 haneli bir Discord Sunucu Kimliği (Guild ID) girin.");
         return;
     }
 
     resultBox.style.display = 'block';
     resultBox.innerHTML = `
-        <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
             <div>
                 <h4 style="color:var(--text-primary); margin-bottom:4px;">Sunucu Kimliği: <code>${guildId}</code></h4>
-                <p style="color:var(--success); font-size:13px;">🟢 Durum: <strong>Aktif Seviye 2 Lisansı</strong> (BaaS Otopilot)</p>
-                <p style="color:var(--text-secondary); font-size:12px;">Kalan Süre: 28 Gün • Son Yenileme: 2026-11-15</p>
+                <p style="color:var(--primary); font-size:13px;">🔒 <strong>Güvenlik Kalkanı:</strong> Canlı lisans verileri üçüncü kişilere karşı gizlilik protokolüyle korunmaktadır.</p>
+                <p style="color:var(--text-secondary); font-size:12px;">Sunucunuzda <code>!lisans-bilgi</code> komutunu kullanarak veya Discord bilet masamızdan anlık sürenizi görebilirsiniz.</p>
             </div>
-            <a href="#paketler" class="btn btn-card">Yükselt</a>
+            <a href="#paketler" class="btn btn-primary btn-sm">Paket Seç / Yenile</a>
         </div>
     `;
 }
