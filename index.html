@@ -261,24 +261,29 @@
                             <td class="text-success font-weight-bold">Sadece 400 TL - 650 TL / ay</td>
                         </tr>
                         <tr>
-                            <td><strong>Çalışma Süresi</strong></td>
-                            <td>Günde 6-8 saat (Uykuda, tatilde yok)</td>
-                            <td class="text-success"><strong>7/24 Kesintisiz (0 saniye uyku)</strong></td>
+                            <td><strong>Fatura & Kurumsal Güvence</strong></td>
+                            <td class="text-danger">Muhatap yok, fatura yok, bireysel risk</td>
+                            <td class="text-success"><strong>Resmi Pazaryerleri ile 3D Secure & E-Fatura Garantisi</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Açık Kaynak Kodlara Karşı</strong></td>
+                            <td class="text-danger">Kod çöker, ayar/bakım ister, sunucu parası yer</td>
+                            <td class="text-success"><strong>Sıfır Bakım: Auto-Sharding, Steam Bilet & Anti-Nuke hazır</strong></td>
                         </tr>
                         <tr>
                             <td><strong>Sunucu Masrafı (VPS)</strong></td>
-                            <td class="text-danger">Her ay dolar bazlı ek sunucu kirası</td>
-                            <td class="text-success"><strong>0 TL (Bizim donanımımızda barınır)</strong></td>
+                            <td class="text-danger">Her ay dolar bazlı ek sunucu kirası ($15-$30)</td>
+                            <td class="text-success"><strong>0 TL (Bizim yüksek hızlı bulut kümemizde barınır)</strong></td>
                         </tr>
                         <tr>
-                            <td><strong>Arıza ve Çökme</strong></td>
-                            <td>Bot çökerse kodcuya ulaşamazsınız</td>
-                            <td class="text-success"><strong>systemd ile 3 saniyede otomatik dirilme</strong></td>
+                            <td><strong>Arıza ve Çökme Koruması</strong></td>
+                            <td>Bot çökerse kodcuya ulaşılamaz</td>
+                            <td class="text-success"><strong>Auto-Sharded Dağıtık Ağ & PM2 ile kesintisiz</strong></td>
                         </tr>
                         <tr>
-                            <td><strong>Küfür / Filtre Hızı</strong></td>
+                            <td><strong>Küfür & Filtre Hızı</strong></td>
                             <td>İnsan gözü kaçırır, gecikir</td>
-                            <td class="text-success"><strong>0 ms saf Regex ve Leetspeak kalkanı</strong></td>
+                            <td class="text-success"><strong>0.02 ms Aho-Corasick ve Leetspeak kalkanı</strong></td>
                         </tr>
                     </tbody>
                 </table>
@@ -320,21 +325,41 @@
             <div class="faq-accordion">
                 <div class="faq-item">
                     <button class="faq-question">
-                        <span>Aboneliğimi istediğim zaman iptal edebilir miyim?</span>
+                        <span>Kendi botumu yazabiliyorken veya internette açık kaynak botlar varken neden NETTmods almalıyım?</span>
                         <i class="fa-solid fa-chevron-down"></i>
                     </button>
                     <div class="faq-answer">
-                        <p>Evet! Sistemimizde herhangi bir taahhüt veya sözleşme bulunmaz. Aboneliğinizi dilediğiniz ay tek tıkla durdurabilir veya yenilemeyebilirsiniz.</p>
+                        <p>İnternetteki basit açık kaynak botlar tek bir sunucu içindir; 7/24 açık kalması için aylık $10–$25 dolar bazlı VPS sunucu kiralamak, Linux kütüphanelerini güncellemek, gece çöktüğünde uyanıp müdahale etmek ve sıfır hata toleranslı Aho-Corasick filtreleri geliştirmek ciddi bir zaman ve maliyet kaybıdır. <strong>NETTmods</strong>; Discord Auto-Sharding ile yüksek trafiği tek tıkla kaldıran, Steam standartlarında HTML transkript ve CSAT memnuniyet raporu üreten, rol/kanal yedeği alan ve sıfır bakım maliyeti sunan tak-çalıştır kurumsal bir altyapıdır. Zamanınız ve topluluğunuzun prestiji aylık birkaç yüz liradan çok daha değerlidir.</p>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-question">
-                        <span>Ödemeyi nasıl yapabilirim?</span>
+                        <span>Fatura alabilir miyim? Ödemeler ne kadar güvenilir ve kurumsal?</span>
                         <i class="fa-solid fa-chevron-down"></i>
                     </button>
                     <div class="faq-answer">
-                        <p>Ödemelerinizi şirket veya vergi şartı olmadan; <strong>Pazaryeri Güvencesi</strong> (İtemsatış, GameSatış, ByNoGame ile Kredi Kartı & Taksit), <strong>FinTech Cüzdanları</strong> (Papara, Tosla, Nays, Paycell, FUPS), <strong>7/24 FAST / IBAN</strong> veya düşük ağ ücretli <strong>Kripto Para</strong> (USDT, Litecoin) ile kesintisiz yapabilirsiniz.</p>
+                        <p>Kesinlikle! Tüm abonelik ödemelerinizi Türkiye'nin lider lisanslı pazaryerleri (<strong>İtemsatış, GameSatış, ByNoGame</strong>) üzerinden 3D Secure kredi kartı, taksit imkanı ve <strong>resmi e-fatura / kurumsal makbuz</strong> güvencesiyle tamamlayabilirsiniz. Ayrıca genç girişimciler için sıfır komisyonlu 7/24 FAST/Havale, FinTech (Papara, Tosla, Nays) ve Kripto Para (USDT, LTC) seçenekleri de mevcuttur.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Büyük ve yoğun trafiğe sahip (on binlerce üyeli) sunucularda donma veya lag yaşanır mı?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Hayır! NETTmods, basit ev tipi scriptlerin aksine Discord'un kurumsal <strong>Auto-Sharded Dağıtık Ağ Kümesi</strong> üzerinde çalışır. Saniyede 197.000 mesaj tarama kapasitesine sahip doğrusal <strong>O(n) Aho-Corasick</strong> filtreleme motoru, minimal Gateway Intent filtresi ve asenkron I/O kuyrukları sayesinde on binlerce kişilik dev sunucularda dahi mesaj işleme süresi 0.02 milisaniyenin altındadır. Donanım telemetri nöbetçimiz sistemi 7/24 kesintisiz izler.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Aboneliğimi istediğim zaman iptal edebilir miyim?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Evet! Sistemimizde herhangi bir taahhüt veya sözleşme bulunmaz. Aboneliğinizi dilediğiniz ay tek tıkla durdurabilir veya yenilemeyebilirsiniz.</p>
                     </div>
                 </div>
 
@@ -354,7 +379,7 @@
                         <i class="fa-solid fa-chevron-down"></i>
                     </button>
                     <div class="faq-answer">
-                        <p>Hayır. Sistemimizde 2 kademeli suistimal koruması vardır: 1) Sunucunuzda en az 30 üye olmalıdır (boş sunucu açılamaz). 2) Her sunucu kimliği (Guild ID) ömrü boyunca yalnızca bir kez deneme alabilir. Bot atılıp tekrar eklense bile 2. kez deneme vermez.</p>
+                        <p>Hayır. Sistemimizde 2 kademeli suistimal koruması vardır: 1) Sunucunuzda en az 30 üye olmalıdır (boş sunucu açılamaz). 2) Her sunucu veya grup kimliği ömrü boyunca yalnızca bir kez deneme alabilir. Bot atılıp tekrar eklense bile 2. kez deneme vermez.</p>
                     </div>
                 </div>
             </div>
