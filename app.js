@@ -256,3 +256,98 @@ function showToast(message) {
         setTimeout(() => toast.classList.remove('active'), 3500);
     }
 }
+
+// 8. Interactive Web Dashboard Simulation & State
+const dashState = {
+    aho: true,
+    leet: true,
+    raid: true,
+    triage: true,
+    sla: true,
+    csat: true,
+    backup: true,
+    heal: true
+};
+
+function updateDashState(key, isChecked) {
+    dashState[key] = isChecked;
+    const labels = {
+        aho: "Aho-Corasick Küfür/Reklam Kalkanı",
+        leet: "Leetspeak De-obfuscation Filtresi",
+        raid: "Anti-Raid & 14 Günlük Hesap Karantinası",
+        triage: "Açılır Ön Teşhis Formu (Triage Modal)",
+        sla: "Geri Sayımlı Canlı SLA Sayacı",
+        csat: "Kapanışta 5 Yıldız Memnuniyet Anketi",
+        backup: "6 Saatte Bir Offsite Şifreli Yedekleme",
+        heal: "Self-Healing Otomatik Yeniden Başlatma"
+    };
+    const statusText = isChecked ? "Aktif Edildi 🟢" : "Devre Dışı Bırakıldı ⚪";
+    showToast(`${labels[key] || key}: ${statusText}`);
+
+    // Update live status pill
+    const statusEl = document.getElementById('dashLiveStatus');
+    if (statusEl) {
+        statusEl.innerText = "Ayarlar Kaydedildi (Bulut Senkronize ⚡)";
+        setTimeout(() => {
+            statusEl.innerText = "Canlı Bağlantı: Shard #01";
+        }, 2000);
+    }
+}
+
+function openTranscriptModalDemo() {
+    showToast("📄 HTML Bilet Transkript Arşivi yeni sekmede açılıyor...");
+    const win = window.open("", "_blank");
+    if (!win) return;
+    win.document.write(`<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Steam Standart Bilet Transkripti - #TK-8492</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0e1118; color: #c6d4df; margin: 0; padding: 40px; }
+        .container { max-width: 800px; margin: auto; background: #161c26; border-radius: 12px; border: 1px solid #2a3447; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .header { background: #1b2838; padding: 24px; border-bottom: 2px solid #66c0f4; }
+        .title { font-size: 20px; font-weight: bold; color: #66c0f4; margin: 0 0 8px 0; }
+        .meta { font-size: 13px; color: #8f98a0; }
+        .messages { padding: 24px; }
+        .msg { display: flex; gap: 14px; margin-bottom: 18px; }
+        .avatar { width: 40px; height: 40px; border-radius: 50%; background: #66c0f4; color: #000; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+        .bubble { background: #1e2633; padding: 12px 16px; border-radius: 8px; flex-grow: 1; border: 1px solid #2d384a; }
+        .author { font-size: 14px; font-weight: bold; color: #fff; margin-bottom: 4px; }
+        .time { font-size: 11px; color: #8f98a0; font-weight: normal; margin-left: 8px; }
+        .text { font-size: 14px; line-height: 1.5; }
+        .csat-box { background: #18221b; border: 1px solid #2e5939; padding: 16px; border-radius: 8px; margin-top: 20px; text-align: center; }
+        .csat-score { font-size: 18px; font-weight: bold; color: #a4d007; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title">🎫 Steam Standart Destek Transkripti — Bilet #TK-8492</div>
+            <div class="meta">Kategori: Teknik Destek / Kurulum • SLA: 8 dakika içinde çözüldü • Durum: Kapandı</div>
+        </div>
+        <div class="messages">
+            <div class="msg">
+                <div class="avatar" style="background:#a4d007;">K</div>
+                <div class="bubble">
+                    <div class="author">Kullanıcı (Mert) <span class="time">Bugün 14:15</span></div>
+                    <div class="text">Merhaba, sunucumuzda Leetspeak filtresini Seviye 3'e yükselttik, ancak özel bir rolü muaf tutmak istiyoruz.</div>
+                </div>
+            </div>
+            <div class="msg">
+                <div class="avatar" style="background:#66c0f4;">D</div>
+                <div class="bubble">
+                    <div class="author">Yetkili Destek Ekibi <span class="time">Bugün 14:21 (6 dk sonra)</span></div>
+                    <div class="text">Merhaba Mert Bey! Web Kontrol Paneliniz üzerinden veya <code>/muaf rol @Yetkili</code> yazarak ilgili rolü anında filtre dışı bırakabilirsiniz. İşleminiz tamamlanmıştır!</div>
+                </div>
+            </div>
+            <div class="csat-box">
+                <div class="csat-score">⭐ CSAT Oylaması: 5 / 5 Yıldız (Çok Memnun)</div>
+                <small style="color:#8f98a0;">"Harika hız, 6 dakikada sorunum çözüldü teşekkürler!"</small>
+            </div>
+        </div>
+    </div>
+</body>
+</html>`);
+}
+
