@@ -87,37 +87,44 @@ function handleSubscriptionSubmit(e) {
     document.getElementById('refCodeText').innerText = randomCode;
 
     let paymentInfoHtml = "";
-    if (method === "havale") {
+    if (method === "pazaryeri") {
         paymentInfoHtml = `
-            <strong>Banka / FAST Bilgileri:</strong><br>
-            • <strong>IBAN:</strong> TR00 0000 0000 0000 0000 0000 00<br>
-            • <strong>Alıcı:</strong> NETTmods Yazılım<br>
-            • <strong>Tutar:</strong> ${currentSelectedPlan.price} TL<br>
-            • <strong>Açıklama:</strong> ${randomCode} (${guildId})<br>
-            <small style="color:var(--primary); display:block; margin-top:6px;">Ödeme açıklamanıza mutlaka referans kodunu yazınız. Lisansınız 2 dakikada otomatik açılır.</small>
+            <strong>🛒 Pazaryeri Güvencesi (Kredi Kartı / Taksit):</strong><br>
+            Banka hesabı veya şirket olmadan, 3D Secure kredi kartı ve taksitle güvenli satın alma bağlantılarımız:<br>
+            • <a href="https://www.itemsatis.com" target="_blank" style="color:var(--primary); font-weight:bold; text-decoration:underline;">👉 İtemsatış Mağazamızdan Satın Al (${currentSelectedPlan.price} TL)</a><br>
+            • <a href="https://www.gamesatis.com" target="_blank" style="color:var(--primary); font-weight:bold; text-decoration:underline;">👉 GameSatış Mağazamızdan Satın Al (${currentSelectedPlan.price} TL)</a><br>
+            • <a href="https://www.bynogame.com" target="_blank" style="color:var(--primary); font-weight:bold; text-decoration:underline;">👉 ByNoGame Mağazamızdan Satın Al (${currentSelectedPlan.price} TL)</a><br>
+            <small style="color:var(--text-secondary); display:block; margin-top:6px;">Satın aldıktan sonra platformdaki Sipariş Numaranızı Discord sipariş masanıza veya destek biletinize iletmeniz yeterlidir. Bot anında lisanslanır.</small>
         `;
-    } else if (method === "shopier") {
+    } else if (method === "fintech") {
         paymentInfoHtml = `
-            <strong>Online Kredi Kartı Ödemesi (Shopier):</strong><br>
-            Aşağıdaki bağlantıdan 3D Secure ile 7/24 güvenli ödeme yapabilirsiniz:<br>
-            <a href="https://shopier.com" target="_blank" style="color:var(--primary); text-decoration:underline; font-weight:bold;">
-                👉 Shopier ile Güvenli Öde (${currentSelectedPlan.price} TL)
-            </a><br>
-            <small>Ödeme sonrası sipariş masamıza bildirim düşer ve bot yetkiniz onaylanır.</small>
-        `;
-    } else if (method === "papara") {
-        paymentInfoHtml = `
-            <strong>Papara ile Anında Ödeme:</strong><br>
-            • <strong>Papara No:</strong> 1234567890<br>
+            <strong>⚡ FinTech & Ön Ödemeli Kartlar (Sıfır Komisyon):</strong><br>
+            Genç ve kolay transfer cüzdanları ile 7/24 anında ödeme:<br>
+            • <strong>Papara No:</strong> <code>1234567890</code><br>
+            • <strong>Tosla No / IBAN:</strong> <code>TR00 0000 0000 0000 0000 00</code><br>
+            • <strong>Nays / Paycell / FUPS:</strong> <code>0555 000 00 00</code><br>
             • <strong>Tutar:</strong> ${currentSelectedPlan.price} TL<br>
-            • <strong>Açıklama:</strong> ${randomCode}
+            • <strong>Açıklama:</strong> <code>${randomCode}</code><br>
+            <small style="color:var(--primary); display:block; margin-top:6px;">Açıklama kısmına <strong>${randomCode}</strong> referans kodunuzu yazınız. Ödeme anında yetkili ekranına düşer.</small>
+        `;
+    } else if (method === "havale") {
+        paymentInfoHtml = `
+            <strong>🏦 Banka / FAST / Havale (7/24 Anında Aktivasyon):</strong><br>
+            Tüm bankalardan saniyeler içinde masrafsız FAST transferi:<br>
+            • <strong>IBAN:</strong> <code>TR00 0000 0000 0000 0000 0000 00</code><br>
+            • <strong>Alıcı:</strong> NETTmods Altyapı Yönetimi<br>
+            • <strong>Tutar:</strong> ${currentSelectedPlan.price} TL<br>
+            • <strong>Açıklama:</strong> <code>${randomCode} (${guildId})</code><br>
+            <small style="color:var(--primary); display:block; margin-top:6px;">Ödeme açıklamasına mutlaka referans kodunu yazınız. Lisansınız 2 dakikada otomatik onaylanır.</small>
         `;
     } else {
         paymentInfoHtml = `
-            <strong>Kripto Para (USDT - TRC20):</strong><br>
-            • <strong>Ağ:</strong> TRC-20<br>
-            • <strong>Cüzdan:</strong> TXXXXXXXXXXXXXXXXXXXXXXXXXXXXX<br>
-            • <strong>Tutar:</strong> $${Math.round(currentSelectedPlan.price / 35)} USDT
+            <strong>💎 Kripto Para (Sıfır Kesinti & Düşük Ağ Ücreti):</strong><br>
+            Kuruş düzeyinde transfer ücreti ile küresel ödeme:<br>
+            • <strong>USDT (TRC-20):</strong> <code>TXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</code> ($${Math.round(currentSelectedPlan.price / 35)} USDT)<br>
+            • <strong>USDT (BEP-20 / BSC):</strong> <code>0xXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</code> ($${Math.round(currentSelectedPlan.price / 35)} USDT)<br>
+            • <strong>Litecoin (LTC):</strong> <code>ltc1qxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</code> (~${(currentSelectedPlan.price / 35 / 75).toFixed(3)} LTC)<br>
+            <small style="color:var(--primary); display:block; margin-top:6px;">Ağ transferi onaylandıktan sonra TXID kodunu canlı destek biletinize iletiniz.</small>
         `;
     }
 
