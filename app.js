@@ -41,9 +41,22 @@ function startSubscription(tier, planName) {
     currentSelectedPlan.tier = tier;
     currentSelectedPlan.name = planName;
 
-    const basePrice = tier === 1 ? 400 : (tier === 2 ? 650 : 950);
-    const finalPrice = isAnnualBilling ? Math.round(basePrice * 0.8) : basePrice;
-    const period = isAnnualBilling ? "TL / ay (Yıllık)" : "TL / ay";
+    let finalPrice = 199;
+    let period = "TL / ay";
+
+    if (tier === 4) {
+        finalPrice = 1499;
+        period = "TL (Ömür Boyu Tek Seferlik)";
+    } else if (tier === 1) {
+        finalPrice = isAnnualBilling ? 99 : 199;
+        period = isAnnualBilling ? "TL / ay (Yıllık)" : "TL / ay";
+    } else if (tier === 2) {
+        finalPrice = isAnnualBilling ? 199 : 349;
+        period = isAnnualBilling ? "TL / ay (Yıllık)" : "TL / ay";
+    } else if (tier === 3) {
+        finalPrice = isAnnualBilling ? 299 : 499;
+        period = isAnnualBilling ? "TL / ay (Yıllık)" : "TL / ay";
+    }
 
     currentSelectedPlan.price = finalPrice;
 
@@ -54,7 +67,7 @@ function startSubscription(tier, planName) {
     const successView = document.getElementById('orderSuccessView');
 
     if (modal && modalTitle && modalPrice) {
-        modalTitle.innerText = `Seviye ${tier}: ${planName}`;
+        modalTitle.innerText = tier === 4 ? `👑 ${planName}` : `Seviye ${tier}: ${planName}`;
         modalPrice.innerText = `${finalPrice} ${period}`;
         
         // Reset view
