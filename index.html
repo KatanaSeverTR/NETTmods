@@ -298,7 +298,7 @@
                 <div class="license-form">
                     <div class="input-group">
                         <i class="fa-solid fa-server"></i>
-                        <input type="text" id="guildIdInput" placeholder="Discord Sunucu Kimliği (Guild ID) Girin (Örn: 123456789012345678)">
+                        <input type="text" id="guildIdInput" placeholder="Discord Sunucu veya Telegram Grup ID Girin (Örn: 987654321012345678 veya -100192837465)">
                     </div>
                     <button class="btn btn-primary" onclick="checkLicense()">
                         <i class="fa-solid fa-magnifying-glass"></i> Sorgula
@@ -404,13 +404,13 @@
             <div class="modal-body">
                 <form id="subscriptionForm" onsubmit="handleSubscriptionSubmit(event)">
                     <div class="form-group">
-                        <label for="orderGuildId">Discord Sunucu Kimliği (Guild ID) <span class="required">*</span></label>
-                        <input type="text" id="orderGuildId" required placeholder="Örn: 987654321012345678" pattern="[0-9]{17,20}">
-                        <small>Sunucu ayarlarına sağ tıklayıp "Sunucu Kimliğini Kopyala" deyin.</small>
+                        <label for="orderGuildId">Discord Sunucu veya Telegram Grup ID <span class="required">*</span></label>
+                        <input type="text" id="orderGuildId" required placeholder="Örn: 987654321012345678 veya -100192837465" pattern="^-?[0-9]{9,20}$">
+                        <small>Discord'da sunucuya sağ tıklayıp kopyalayın; Telegram'da gruba botu ekleyip /id yazın.</small>
                     </div>
                     <div class="form-group">
-                        <label for="orderDiscordUser">Discord Kullanıcı Adınız <span class="required">*</span></label>
-                        <input type="text" id="orderDiscordUser" required placeholder="Örn: patron#0001 veya kullaniciadi">
+                        <label for="orderDiscordUser">Discord veya Telegram Kullanıcı Adınız <span class="required">*</span></label>
+                        <input type="text" id="orderDiscordUser" required placeholder="Örn: patron#0001 veya @kullaniciadi">
                     </div>
                     <div class="form-group">
                         <label>Ödeme Yöntemi</label>
@@ -444,10 +444,13 @@
                         <i class="fa-solid fa-copy"></i> 📋 Sipariş Kodunu Kopyala (Bilete Yapıştır)
                     </button>
                     <a href="https://discord.com/api/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=8&scope=bot" target="_blank" class="btn btn-discord btn-block" style="margin-top:10px;">
-                        <i class="fa-solid fa-robot"></i> 1. Botu Sunucuna Ekle
+                        <i class="fa-solid fa-robot"></i> 1. Discord Sunucuna Ekle
+                    </a>
+                    <a href="https://t.me/NETTmodsBot?startgroup=true" target="_blank" class="btn btn-secondary btn-block" style="margin-top:8px;">
+                        <i class="fa-brands fa-telegram"></i> Telegram Grubuna Ekle
                     </a>
                     <a href="https://discord.gg" target="_blank" class="btn btn-primary btn-block" style="margin-top:10px;">
-                        <i class="fa-brands fa-discord"></i> 2. Discord Biletinde Onayla
+                        <i class="fa-brands fa-discord"></i> 2. Destek Masasında Onayla
                     </a>
                 </div>
             </div>
@@ -464,15 +467,18 @@
                 <p class="modal-price" style="color:var(--success);">0 TL • Kartsız & Taahhütsüz</p>
             </div>
             <div class="modal-body">
-                <p>Sunucunuzda en az <strong>30 üye</strong> varsa, botu eklediğiniz an 24 saatlik Seviye 2 denemeniz başlar.</p>
+                <p>Sunucunuzda veya Telegram grubunuzda en az <strong>30 üye</strong> varsa, botu eklediğiniz an 24 saatlik Seviye 2 denemeniz başlar.</p>
                 <div class="trial-steps-list">
-                    <div>1. Aşağıdaki butona basarak botu sunucunuza ekleyin.</div>
-                    <div>2. Bot sunucudaki üye sayısını doğrulayıp denemenizi başlatır.</div>
-                    <div>3. 24 saat boyunca tüm bilet masası ve kalkanı sınırsız kullanın!</div>
+                    <div>1. Botu Discord sunucunuza veya Telegram grubunuza ekleyin.</div>
+                    <div>2. Telegram'da grubunuzda <code>/kurulum</code> yazın (Discord'da bot otomatik başlar).</div>
+                    <div>3. 24 saat boyunca tüm filtre ve koruma özelliklerini sınırsız test edin!</div>
                 </div>
                 <div class="modal-actions" style="margin-top: 20px;">
                     <a href="https://discord.com/api/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=8&scope=bot" target="_blank" class="btn btn-primary btn-block">
-                        <i class="fa-solid fa-plus"></i> Botu Sunucuna Ekle ve Başlat
+                        <i class="fa-solid fa-plus"></i> Discord Sunucuna Ekle ve Başlat
+                    </a>
+                    <a href="https://t.me/NETTmodsBot?startgroup=true" target="_blank" class="btn btn-secondary btn-block" style="margin-top:8px;">
+                        <i class="fa-brands fa-telegram"></i> Telegram Grubuna Ekle (/kurulum)
                     </a>
                 </div>
             </div>

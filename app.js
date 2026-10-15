@@ -183,8 +183,8 @@ function checkLicense() {
     const resultBox = document.getElementById('licenseResult');
     const guildId = input.value.trim();
 
-    if (!guildId || !/^[0-9]{17,20}$/.test(guildId)) {
-        showToast("⚠️ Lütfen geçerli 18-19 haneli bir Discord Sunucu Kimliği (Guild ID) girin.");
+    if (!guildId || !/^-?[0-9]{9,20}$/.test(guildId)) {
+        showToast("⚠️ Lütfen geçerli bir Discord Sunucu (18-19 hane) veya Telegram Grup ID (-100...) girin.");
         return;
     }
 
@@ -192,9 +192,9 @@ function checkLicense() {
     resultBox.innerHTML = `
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
             <div>
-                <h4 style="color:var(--text-primary); margin-bottom:4px;">Sunucu Kimliği: <code>${guildId}</code></h4>
+                <h4 style="color:var(--text-primary); margin-bottom:4px;">Sunucu / Grup Kimliği: <code>${guildId}</code></h4>
                 <p style="color:var(--primary); font-size:13px;">🔒 <strong>Güvenlik Kalkanı:</strong> Canlı lisans verileri üçüncü kişilere karşı gizlilik protokolüyle korunmaktadır.</p>
-                <p style="color:var(--text-secondary); font-size:12px;">Sunucunuzda <code>!lisans-bilgi</code> komutunu kullanarak veya Discord bilet masamızdan anlık sürenizi görebilirsiniz.</p>
+                <p style="color:var(--text-secondary); font-size:12px;">Discord'da <code>!lisans-bilgi</code>, Telegram grubunuzda <code>/id</code> veya <code>/kurulum</code> komutunu kullanarak anlık sürenizi görebilirsiniz.</p>
             </div>
             <a href="#paketler" class="btn btn-primary btn-sm">Paket Seç / Yenile</a>
         </div>
