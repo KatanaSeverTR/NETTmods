@@ -74,7 +74,7 @@ function handlePurchaseSubmit(e) {
             • <a href="https://www.itemsatis.com" target="_blank" style="color:var(--primary); font-weight:bold; text-decoration:underline;">👉 İtemsatış Mağazamızdan Satın Al (${currentSelectedPlan.price} TL)</a><br>
             • <a href="https://www.gamesatis.com" target="_blank" style="color:var(--primary); font-weight:bold; text-decoration:underline;">👉 GameSatış Mağazamızdan Satın Al (${currentSelectedPlan.price} TL)</a><br>
             • <a href="https://www.bynogame.com" target="_blank" style="color:var(--primary); font-weight:bold; text-decoration:underline;">👉 ByNoGame Mağazamızdan Satın Al (${currentSelectedPlan.price} TL)</a><br>
-            <small style="color:var(--text-secondary); display:block; margin-top:8px;">Satın aldığınızda ZIP arşiv indirme linki ve şifresi sistem tarafından otomatik olarak teslim edilir.</small>
+            <small style="color:var(--text-secondary); display:block; margin-top:8px;">Satın aldığınızda ZIP arşiv indirme linki, tek kullanımlık aktivasyon biletiniz ve çift tıkla çalışan BASLAT.bat kurulum sihirbazı otomatik olarak teslim edilir.</small>
         `;
     } else if (method === "fintech") {
         paymentInfoHtml = `
@@ -85,7 +85,7 @@ function handlePurchaseSubmit(e) {
             • <strong>Nays / Paycell:</strong> <code>0555 000 00 00</code><br>
             • <strong>Tutar:</strong> ${currentSelectedPlan.price} TL<br>
             • <strong>Açıklama:</strong> <code>${randomCode}</code><br>
-            <small style="color:var(--primary); display:block; margin-top:8px;">Açıklama kısmına <strong>${randomCode}</strong> kodunu yazıp Discord destek biletine makbuzu ilettiğinizde ZIP arşiviniz 2 dakikada gönderilir.</small>
+            <small style="color:var(--primary); display:block; margin-top:8px;">Açıklama kısmına <strong>${randomCode}</strong> kodunu yazıp Discord biletine dekontu ilettiğinizde ZIP arşiviniz, tekil biletiniz ve çift tık başlatıcınız 2 dakikada gönderilir.</small>
         `;
     } else if (method === "havale") {
         paymentInfoHtml = `
@@ -95,7 +95,7 @@ function handlePurchaseSubmit(e) {
             • <strong>Alıcı:</strong> NETTmods Dijital Altyapı<br>
             • <strong>Tutar:</strong> ${currentSelectedPlan.price} TL<br>
             • <strong>Açıklama:</strong> <code>${randomCode}</code><br>
-            <small style="color:var(--primary); display:block; margin-top:8px;">Ödeme açıklamasına mutlaka referans kodunu yazınız. Dekontu ilettiğiniz an ZIP arşivi ve GitHub repo davetiyeniz açılır.</small>
+            <small style="color:var(--primary); display:block; margin-top:8px;">Ödeme açıklamasına mutlaka referans kodunu yazınız. Dekontu ilettiğiniz an ZIP arşivi, biletiniz ve çift tık kurulum paketiniz teslim edilir.</small>
         `;
     } else {
         paymentInfoHtml = `
@@ -104,7 +104,7 @@ function handlePurchaseSubmit(e) {
             • <strong>USDT (TRC-20):</strong> <code>TXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</code> (~$${Math.round(currentSelectedPlan.price / 35)} USDT)<br>
             • <strong>USDT (BEP-20):</strong> <code>0xXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</code> (~$${Math.round(currentSelectedPlan.price / 35)} USDT)<br>
             • <strong>Litecoin (LTC):</strong> <code>ltc1qxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</code> (~${(currentSelectedPlan.price / 35 / 75).toFixed(3)} LTC)<br>
-            <small style="color:var(--primary); display:block; margin-top:8px;">Transfer TXID kodunu Discord destek masamıza ilettiğinizde indirme linkiniz anında iletilir.</small>
+            <small style="color:var(--primary); display:block; margin-top:8px;">Transfer TXID kodunu Discord destek masamıza ilettiğinizde hazır paketiniz anında iletilir.</small>
         `;
     }
 
@@ -112,7 +112,7 @@ function handlePurchaseSubmit(e) {
 
     // Save order summary for 1-click clipboard copy
     const purposeText = usagePurpose === "kisisel" ? "Kişisel Topluluk" : "Ticari Hizmet";
-    lastOrderSummary = `[NETTmods Lisans Siparişi] Ref: ${randomCode} | Ürün: ${currentSelectedPlan.name} (${currentSelectedPlan.price} TL) | Sunucu ID: ${guildId} | Amaç: ${purposeText} | Yetkili: ${discordUser} | E-Posta: ${email} | Lisans Sözleşmesi: Onaylandı`;
+    lastOrderSummary = `[NETTmods Hazır Otomasyon Siparişi] Ref: ${randomCode} | Ürün: ${currentSelectedPlan.name} (${currentSelectedPlan.price} TL) | Sunucu ID: ${guildId} | Amaç: ${purposeText} | Yetkili: ${discordUser} | E-Posta: ${email} | Mülkiyet: Turnkey (Çift Tık Kurulum)`;
 
     // Switch to success view
     document.getElementById('subscriptionForm').style.display = 'none';
