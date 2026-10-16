@@ -353,3 +353,82 @@ function verifyTicketOnline() {
     }
 }
 
+// 7. Interactive Mobile Command Center (Telegram Synapse Simulator)
+function triggerTgAction(action) {
+    const responseBox = document.getElementById('tgDynamicResponse');
+    const chatBody = document.getElementById('tgChatBody');
+    if (!responseBox) return;
+
+    let responseHtml = "";
+    if (action === 'stock') {
+        responseHtml = `
+            <div class="tg-reply-bubble">
+                <strong>📦 [Telegram Otopilot] Güncel Depo Stoğu:</strong><br>
+                • Steam Random Key VIP: <strong>42 Adet</strong><br>
+                • CS2 Skin Kasa Anahtarı: <strong>18 Adet</strong><br>
+                • Durum: <em>Stoklar yeterli, otomatik satış kesintisiz devam ediyor.</em>
+                <div class="tg-bubble-meta">Şimdi ✓✓</div>
+            </div>
+        `;
+        showToast("📦 Cepte Yönetim: Stok bilgisi Telegram ekranında gösterildi!");
+    } else if (action === 'report') {
+        responseHtml = `
+            <div class="tg-reply-bubble">
+                <strong>📊 [Telegram Kasa Raporu - Son 24 Saat]:</strong><br>
+                • Toplam Başarılı Sipariş: <strong>14 Adet</strong><br>
+                • Toplam Hacim: <strong>3.450 TL</strong><br>
+                • En Çok Satan: Steam Random Key VIP<br>
+                • İade / İtiraz: <strong>0 Adet</strong> (%100 Başarı)
+                <div class="tg-bubble-meta">Şimdi ✓✓</div>
+            </div>
+        `;
+        showToast("📊 24 Saatlik Kasa Raporu Telegram ekranında görüntülendi!");
+    } else if (action === 'mute') {
+        responseHtml = `
+            <div class="tg-reply-bubble" style="background:rgba(239, 68, 68, 0.15); border-color:rgba(239, 68, 68, 0.35); color:#fca5a5;">
+                <strong>🔇 [Discord Otopilot Eylemi]:</strong><br>
+                Kullanıcı <code>SpammerGuy</code> Discord sunucunuzda <strong>10 dakika susturuldu</strong>.<br>
+                Tüm kanallarda yazma yetkisi geçici olarak alındı.
+                <div class="tg-bubble-meta">Şimdi ✓✓</div>
+            </div>
+        `;
+        showToast("🔇 Discord Eylemi: Kullanıcı cepten 10 dakika susturuldu!");
+    } else if (action === 'kick') {
+        responseHtml = `
+            <div class="tg-reply-bubble" style="background:rgba(239, 68, 68, 0.2); border-color:#ef4444; color:#fca5a5;">
+                <strong>🔨 [Discord Otopilot Eylemi]:</strong><br>
+                Kullanıcı <code>SpammerGuy</code> <strong>Discord sunucusundan atıldı</strong>.<br>
+                Paylaştığı reklam/phishing mesajları tüm kanallardan temizlendi.
+                <div class="tg-bubble-meta">Şimdi ✓✓</div>
+            </div>
+        `;
+        showToast("🔨 Discord Eylemi: Kullanıcı cepten sunucudan atıldı!");
+    } else if (action === 'ok') {
+        responseHtml = `
+            <div class="tg-reply-bubble" style="background:rgba(100, 181, 246, 0.15); border-color:rgba(100, 181, 246, 0.3); color:#bbdefb;">
+                <strong>✅ [Telegram Otopilot]:</strong> Tehdit ihbarı kapatıldı ve loglara arşivlendi.
+                <div class="tg-bubble-meta">Şimdi ✓✓</div>
+            </div>
+        `;
+        showToast("✅ Tehdit onaylandı ve kapatıldı.");
+    } else if (action === 'close_ticket') {
+        responseHtml = `
+            <div class="tg-reply-bubble" style="background:rgba(245, 158, 11, 0.15); border-color:rgba(245, 158, 11, 0.35); color:#fde68a;">
+                <strong>🔒 [Discord Otopilot Eylemi]:</strong><br>
+                <code>#TK-4912</code> bilet kanalı kapatıldı.<br>
+                📄 <strong>HTML Bilet Transkripti</strong> SQLite veritabanına ve web paneline arşivlendi.
+                <div class="tg-bubble-meta">Şimdi ✓✓</div>
+            </div>
+        `;
+        showToast("🔒 Discord Eylemi: Bilet cepten kapatıldı ve transkript arşivlendi!");
+    }
+
+    responseBox.innerHTML = responseHtml;
+    if (chatBody) {
+        setTimeout(() => {
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }, 50);
+    }
+}
+
+
