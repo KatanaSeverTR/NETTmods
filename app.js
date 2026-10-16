@@ -293,3 +293,63 @@ function openTranscriptModalDemo() {
 </body>
 </html>`);
 }
+
+// 6. Online Ticket Verification & Anti-Piracy Simulation
+function loadSampleTicket(type) {
+    const input = document.getElementById('ticketInput');
+    if (!input) return;
+    if (type === 'sample_active') {
+        input.value = "TICKET-66E2-B77E-E2DF";
+    } else if (type === 'sample_unclaimed') {
+        input.value = "TICKET-9A4B-31C2-88EF";
+    } else if (type === 'sample_pirate') {
+        input.value = "TICKET-PIRATE-COPY-ATTEMPT";
+    }
+    verifyTicketOnline();
+}
+
+function verifyTicketOnline() {
+    const input = document.getElementById('ticketInput');
+    const box = document.getElementById('ticketResultBox');
+    if (!input || !box) return;
+    const code = (input.value || "").trim().toUpperCase();
+    if (!code) {
+        showToast("Lütfen bir aktivasyon bileti kodu girin!");
+        return;
+    }
+
+    box.style.display = "block";
+    if (code.includes("PIRATE")) {
+        box.style.background = "rgba(255, 77, 77, 0.12)";
+        box.style.border = "1px solid #ff4d4d";
+        box.style.color = "#ff8585";
+        box.innerHTML = `
+            <div style="font-weight:bold; font-size:15px; margin-bottom:6px;"><i class="fa-solid fa-triangle-exclamation"></i> ⛔ KORSAN KLONLAMA ENGELLENDİ!</div>
+            <strong>Hata:</strong> Bu bilet ZATEN başka bir Discord sunucusuna (Guild ID: 5555) mühürlenmiştir.<br>
+            <strong>Sonuç:</strong> Bot yetkisiz sunucudan otomatik ayrılır ve kendini kapatır (Exit Code: 42). Kodlar çoğaltılamaz!
+        `;
+    } else if (code.includes("9A4B") || code.includes("UNCLAIMED")) {
+        box.style.background = "rgba(102, 192, 244, 0.12)";
+        box.style.border = "1px solid #66c0f4";
+        box.style.color = "#c6d4df";
+        box.innerHTML = `
+            <div style="font-weight:bold; font-size:15px; color:#66c0f4; margin-bottom:6px;"><i class="fa-solid fa-check"></i> 🟢 BİLET GEÇERLİ (KULLANIMA HAZIR)</div>
+            <strong>Bilet Kodu:</strong> <code>${code}</code><br>
+            <strong>Paket Seviyesi:</strong> Seviye 2 (Ticaret & Steam Bilet Altyapısı)<br>
+            <strong>Durum:</strong> Henüz Mühürlenmedi (İlk çalıştırıldığı Discord sunucusuna mühürlenecektir).<br>
+            <strong>Mülkiyet:</strong> Ömür Boyu Turnkey (0 TL Aylık Ücret).
+        `;
+    } else {
+        box.style.background = "rgba(164, 208, 7, 0.12)";
+        box.style.border = "1px solid #a4d007";
+        box.style.color = "#d2efa4";
+        box.innerHTML = `
+            <div style="font-weight:bold; font-size:15px; color:#a4d007; margin-bottom:6px;"><i class="fa-solid fa-shield-check"></i> 🛡️ BİLET AKTİF & MÜHÜRLÜ (KORUMA ALTINDA)</div>
+            <strong>Bilet Kodu:</strong> <code>${code}</code><br>
+            <strong>Mühürlü Sunucu:</strong> Guild ID: <code>5555 (Mert Gaming)</code><br>
+            <strong>Kriptografik İmza:</strong> HMAC-SHA256 Doğrulandı<br>
+            <strong>Klonlama Koruması:</strong> Aktif (Başka sunucularda çalıştırılamaz).
+        `;
+    }
+}
+

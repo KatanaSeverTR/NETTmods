@@ -31,6 +31,7 @@
                 <a href="#paketler">Altyapı Paketleri</a>
                 <a href="#ek-paketler">Oyun & FPS Paketleri</a>
                 <a href="#web-panel">Web Dashboard</a>
+                <a href="#bilet-sorgu">Bilet Doğrula</a>
                 <a href="#nasil-calisir">1-Click Kurulum</a>
                 <a href="#karsilastirma">Neden Altyapı?</a>
                 <a href="#sss">S.S.S.</a>
@@ -529,6 +530,37 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    <!-- Single-Use Activation Ticket Security & Verification Section -->
+    <section class="ticket-verify-section" id="bilet-sorgu" style="padding: 60px 0; background: rgba(13, 16, 23, 0.7); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag"><i class="fa-solid fa-lock"></i> KORSAN KORUMASI & TEKİL MÜHÜR</span>
+                <h2 class="section-title">Tek Kullanımlık <span class="gradient-text">Aktivasyon Bileti</span> Sistemi</h2>
+                <p class="section-subtitle">
+                    Her altyapı satışı, alıcıya özel kriptografik bir <strong>Tekil Aktivasyon Bileti</strong> ile teslim edilir. Bot ilk çalıştırıldığı Discord sunucusuna kalıcı olarak kilitlenir; dosyalar başkasına kopyalansa bile ikinci bir sunucuda asla çalıştırılamaz.
+                </p>
+            </div>
+
+            <div style="max-width: 680px; margin: 30px auto 0; background: #161c26; border: 1px solid #2a3447; border-radius: 12px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
+                <label style="font-size: 14px; font-weight: 600; color: #66c0f4; margin-bottom: 8px; display: block;">
+                    <i class="fa-solid fa-ticket"></i> Aktivasyon Bileti Sorgula (TICKET-XXXX-YYYY-ZZZZ):
+                </label>
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <input type="text" id="ticketInput" placeholder="Örn: TICKET-66E2-B77E-E2DF" style="flex: 1; background: #0e1118; border: 1px solid #2a3447; border-radius: 8px; padding: 12px 16px; color: #fff; font-family: monospace; font-size: 15px;">
+                    <button class="btn btn-primary" onclick="verifyTicketOnline()" style="white-space: nowrap;">
+                        <i class="fa-solid fa-shield-halved"></i> Doğrula
+                    </button>
+                </div>
+                <div style="display: flex; gap: 10px; font-size: 12px; color: #8f98a0; align-items: center; flex-wrap: wrap;">
+                    <span>Hızlı Canlı Deneme:</span>
+                    <button type="button" onclick="loadSampleTicket('sample_active')" style="background: none; border: 1px solid #3d4d65; color: #a4d007; border-radius: 4px; padding: 2px 8px; cursor: pointer;">Mühürlü Bilet</button>
+                    <button type="button" onclick="loadSampleTicket('sample_unclaimed')" style="background: none; border: 1px solid #3d4d65; color: #66c0f4; border-radius: 4px; padding: 2px 8px; cursor: pointer;">Yeni Bilet</button>
+                    <button type="button" onclick="loadSampleTicket('sample_pirate')" style="background: none; border: 1px solid #3d4d65; color: #ff4d4d; border-radius: 4px; padding: 2px 8px; cursor: pointer;">Korsan Girişimi</button>
+                </div>
+
+                <div id="ticketResultBox" style="display: none; margin-top: 20px; border-radius: 8px; padding: 16px; font-size: 13px; line-height: 1.6;"></div>
             </div>
         </div>
     </section>
