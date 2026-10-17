@@ -9,7 +9,22 @@ let currentSelectedPlan = {
 document.addEventListener('DOMContentLoaded', () => {
     initFAQ();
     initMobileMenu();
+    initCardSpotlight();
 });
+
+// Linear/Vercel Spotlight Mouse Tracking
+function initCardSpotlight() {
+    const cards = document.querySelectorAll('.clean-card, .master-banner, .review-card, .mockup-tray-wrapper');
+    document.addEventListener('mousemove', (e) => {
+        cards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        });
+    });
+}
 
 // 1. Kategori Filtreleme Fonksiyonu
 function filterCategory(cat, btn) {
