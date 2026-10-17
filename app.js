@@ -42,7 +42,7 @@ function startPurchase(tier, planName, price) {
 
     if (modal && modalTitle && modalPrice) {
         modalTitle.innerText = `⚡ ${planName}`;
-        modalPrice.innerText = `${price} TL (Tek Seferlik • Ömür Boyu HWID Lisansı)`;
+        modalPrice.innerText = `${price} TL (Tek Seferlik • Ömür Boyu Taşınabilir Lisans)`;
 
         if (form) form.style.display = 'block';
         if (successView) successView.style.display = 'none';
