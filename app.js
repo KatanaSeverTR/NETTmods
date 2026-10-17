@@ -251,10 +251,26 @@ function queryLicensePortal() {
     showToast("✅ Lisans doğrulandı: " + key);
 }
 
-function resetPortalSession() {
+async function resetPortalSession() {
+    const key = document.getElementById('portalKeyInput').value.trim();
     const device = document.getElementById('portalActiveDevice');
     const badge = document.getElementById('portalStatusBadge');
     
+    // Pi Lisans Sunucusuna uzaktan sonlandırma sinyali gönder
+    try {
+        const res = await fetch("http://localhost:8181/api/v1/license/reset", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ license_key: key })
+        });
+        const data = await res.json();
+        if (data && data.ok) {
+            console.log("[NETTmods Portal] Sunucu oturum sıfırlama başarılı:", data);
+        }
+    } catch (e) {
+        console.log("[NETTmods Portal] Yerel/Çevrimdışı simülasyon aktif:", e.message);
+    }
+
     device.innerHTML = "<span style='color:var(--accent-green); font-weight:bold;'>Boşta (Oturum Sıfırlandı • Başka Bilgisayarda Açılabilir)</span>";
     badge.className = "portal-status-badge status-idle";
     badge.innerText = "Boşta / Hazır";
