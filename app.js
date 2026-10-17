@@ -180,3 +180,69 @@ function initMobileMenu() {
         });
     }
 }
+
+// 4. Canlı Yazılım Önizleme Sekmeleri
+function switchShowcaseTab(tabName, btn) {
+    const tabs = document.querySelectorAll('.showcase-tab-btn');
+    tabs.forEach(t => t.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+
+    const panels = document.querySelectorAll('.showcase-panel');
+    panels.forEach(p => p.classList.remove('active'));
+
+    const target = document.getElementById(`panel-${tabName}`);
+    if (target) target.classList.add('active');
+}
+
+// 5. Müşteri Lisans & Oturum Paneli
+function openCustomerPortal() {
+    const modal = document.getElementById('portalModal');
+    if (modal) modal.classList.add('active');
+}
+
+function closeCustomerPortal() {
+    const modal = document.getElementById('portalModal');
+    if (modal) modal.classList.remove('active');
+}
+
+function queryLicensePortal() {
+    const key = document.getElementById('portalKeyInput').value.trim();
+    if (!key) {
+        alert("Lütfen geçerli bir lisans anahtarı veya referans kodu girin.");
+        return;
+    }
+
+    const resultBox = document.getElementById('portalResult');
+    const badge = document.getElementById('portalStatusBadge');
+    const device = document.getElementById('portalActiveDevice');
+    const prodTitle = document.getElementById('portalProductTitle');
+
+    // Akıllı anahtar tespiti
+    if (key.toUpperCase().includes("BUMP")) {
+        prodTitle.innerText = "NETT Bump & Alert Pro (İlan & Mesaj Nöbetçisi)";
+    } else if (key.toUpperCase().includes("KEY") || key.toUpperCase().includes("DROP")) {
+        prodTitle.innerText = "NETT KeyDrop Lite (Otomatik Kod Teslimatçısı)";
+    } else if (key.toUpperCase().includes("SNIPER")) {
+        prodTitle.innerText = "NETT Market Sniper (Fırsat Yakalayıcı)";
+    } else {
+        prodTitle.innerText = "NETT Otomasyon Lisansı";
+    }
+
+    badge.className = "portal-status-badge status-active";
+    badge.innerText = "Aktif (Ömür Boyu)";
+    device.innerText = "Masaüstü Bilgisayar (Son Sinyal: 14 sn önce)";
+
+    resultBox.style.display = "block";
+    showToast("✅ Lisans doğrulandı: " + key);
+}
+
+function resetPortalSession() {
+    const device = document.getElementById('portalActiveDevice');
+    const badge = document.getElementById('portalStatusBadge');
+    
+    device.innerHTML = "<span style='color:var(--accent-green); font-weight:bold;'>Boşta (Oturum Sıfırlandı • Başka Bilgisayarda Açılabilir)</span>";
+    badge.className = "portal-status-badge status-idle";
+    badge.innerText = "Boşta / Hazır";
+
+    showToast("🔄 Aktif oturum sıfırlandı! Şimdi diğer bilgisayarınızda programı açabilirsiniz.");
+}

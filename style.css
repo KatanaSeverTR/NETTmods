@@ -819,6 +819,7 @@ body {
 /* Responsive */
 @media (max-width: 1100px) {
     .products-clean-grid { grid-template-columns: repeat(2, 1fr); }
+    .showcase-grid { grid-template-columns: 1fr !important; }
 }
 
 @media (max-width: 860px) {
@@ -831,3 +832,414 @@ body {
     .master-price-box { text-align: center; }
     .products-clean-grid { grid-template-columns: 1fr; }
 }
+
+/* ==========================================================================
+   GENUINE UI SHOWCASE (Windows Tray, Telegram Phone, Live Log Terminal)
+   ========================================================================== */
+.showcase-section {
+    padding: 60px 0;
+    position: relative;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    background: linear-gradient(180deg, rgba(7,7,9,0) 0%, rgba(13,14,18,0.6) 50%, rgba(7,7,9,0) 100%);
+}
+
+.showcase-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
+}
+
+.showcase-tab-btn {
+    background: #0d0e12;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.showcase-tab-btn:hover {
+    border-color: rgba(234, 179, 8, 0.4);
+    color: #fff;
+}
+.showcase-tab-btn.active {
+    background: rgba(234, 179, 8, 0.12);
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.showcase-display {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.showcase-panel {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+.showcase-panel.active {
+    display: block;
+}
+
+/* Windows Taskbar & Tray Mockup */
+.mockup-tray-wrapper {
+    background: #0d0f14;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+.mockup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.mockup-header-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.mockup-status-dot {
+    width: 10px;
+    height: 10px;
+    background: var(--accent-green);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent-green);
+    display: inline-block;
+}
+
+.tray-visual-container {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.tray-menu-box {
+    background: #181a22;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 12px;
+    width: 280px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.7);
+    overflow: hidden;
+    font-size: 13px;
+}
+.tray-menu-header {
+    padding: 12px 16px;
+    background: rgba(234, 179, 8, 0.1);
+    border-bottom: 1px solid rgba(234, 179, 8, 0.2);
+    color: var(--primary);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.tray-menu-item {
+    padding: 10px 16px;
+    color: #cbd5e1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    transition: 0.2s;
+}
+.tray-menu-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+}
+.tray-menu-item.active-state {
+    color: var(--accent-green);
+    font-weight: 600;
+}
+.tray-menu-item.danger-action {
+    color: #f87171;
+}
+
+.tray-info-text {
+    flex: 1;
+    min-width: 280px;
+}
+.tray-info-text h4 {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+.tray-info-text p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+.tray-feature-bullets {
+    list-style: none;
+    font-size: 13.5px;
+    color: #cbd5e1;
+}
+.tray-feature-bullets li {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Telegram Mobile UI Mockup */
+.telegram-phone-wrapper {
+    background: #0d0f14;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+.tg-chat-container {
+    background: #17212b;
+    border: 1px solid #242f3d;
+    border-radius: 16px;
+    max-width: 500px;
+    margin: 0 auto;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+.tg-header {
+    background: #242f3d;
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid #1c2733;
+}
+.tg-bot-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #070709;
+    font-weight: 800;
+}
+.tg-bot-info h5 {
+    color: #fff;
+    font-size: 14.5px;
+    margin-bottom: 2px;
+}
+.tg-bot-info span {
+    color: #6ab2f2;
+    font-size: 11.5px;
+}
+
+.tg-messages-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+.tg-msg-bubble {
+    background: #1e2c3a;
+    border-radius: 12px;
+    padding: 12px 16px;
+    color: #f5f5f5;
+    font-size: 13.5px;
+    line-height: 1.5;
+    border-left: 3px solid var(--primary);
+    max-width: 90%;
+}
+.tg-msg-bubble.alert-bubble {
+    border-left-color: var(--accent-green);
+}
+.tg-msg-time {
+    font-size: 11px;
+    color: #798b9b;
+    float: right;
+    margin-top: 6px;
+    margin-left: 10px;
+}
+
+/* Terminal Console Mockup */
+.terminal-window {
+    background: #090a0f;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 14px;
+    overflow: hidden;
+    font-family: var(--font-mono);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.7);
+}
+.terminal-topbar {
+    background: #141720;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.terminal-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+}
+.dot-red { background: #ef4444; }
+.dot-yellow { background: #f59e0b; }
+.dot-green { background: #10b981; }
+.terminal-title {
+    margin-left: 10px;
+    font-size: 12px;
+    color: #94a3b8;
+}
+.terminal-content {
+    padding: 20px;
+    font-size: 12.5px;
+    line-height: 1.7;
+    color: #e2e8f0;
+}
+.log-success { color: #34d399; }
+.log-gold { color: #facc15; }
+.log-info { color: #60a5fa; }
+.log-dim { color: #64748b; }
+
+/* ==========================================================================
+   SOCIAL PROOF & REVIEWS SECTION
+   ========================================================================== */
+.proof-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+}
+@media (max-width: 860px) {
+    .proof-stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
+.proof-stat-card {
+    background: #0d0e12;
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+}
+.proof-stat-num {
+    font-size: 32px;
+    font-weight: 800;
+    font-family: var(--font-heading);
+    color: #fff;
+    margin-bottom: 4px;
+}
+.proof-stat-label {
+    color: var(--text-secondary);
+    font-size: 12.5px;
+    font-weight: 600;
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+@media (max-width: 860px) {
+    .reviews-grid { grid-template-columns: 1fr; }
+}
+.review-card {
+    background: #0d0e12;
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 24px;
+    position: relative;
+    transition: var(--transition);
+}
+.review-card:hover {
+    border-color: rgba(234, 179, 8, 0.4);
+    transform: translateY(-3px);
+}
+.review-stars {
+    color: #eab308;
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+.review-text {
+    font-size: 13.5px;
+    color: #cbd5e1;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+.review-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.author-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(234, 179, 8, 0.15);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+}
+.author-info h6 {
+    color: #fff;
+    font-size: 13.5px;
+    margin-bottom: 2px;
+}
+.author-info span {
+    color: var(--text-muted);
+    font-size: 11.5px;
+}
+.verified-buyer-badge {
+    color: var(--accent-green);
+    font-size: 11px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: 6px;
+}
+
+/* ==========================================================================
+   CUSTOMER SELF-SERVICE PORTAL MODAL
+   ========================================================================== */
+.portal-card {
+    background: #0d0e12;
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 24px;
+    max-width: 580px;
+    width: 90%;
+    margin: 40px auto;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+    position: relative;
+}
+.portal-result-box {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 18px;
+    margin-top: 18px;
+    display: none;
+    font-size: 13.5px;
+}
+.portal-status-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+}
+.status-active { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
+.status-idle { background: rgba(234, 179, 8, 0.15); color: #eab308; border: 1px solid rgba(234, 179, 8, 0.3); }
+
