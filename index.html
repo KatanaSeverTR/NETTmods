@@ -89,16 +89,16 @@
                     <i class="fa-solid fa-crown"></i>
                 </div>
                 <div class="master-banner-text">
-                    <span style="display:inline-block; background:rgba(0,242,254,0.15); color:var(--primary); font-size:11px; font-weight:800; padding:2px 8px; border-radius:12px; margin-bottom:6px; text-transform:uppercase;">👑 EN AVANTAJLI TEK PAKET</span>
-                    <h3>NETT Master Suite — 9 Otonom Otomasyon Bir Arada!</h3>
-                    <p>Pazaryeri Nöbetçisi + Otomatik Kod Teslimatçısı + Kelepir Sniper + Destek Masası + Görsel Fabrikası + Fatura Kazıyıcı ve tüm araçlar tek lisans altında.</p>
+                    <span style="display:inline-block; background:rgba(234,179,8,0.15); color:var(--primary); font-size:11px; font-weight:800; padding:3px 10px; border-radius:12px; margin-bottom:6px; text-transform:uppercase; border:1px solid rgba(234,179,8,0.3);">👑 EN ÇOK TERCİH EDİLEN PAKET</span>
+                    <h3>NETT Master Suite — 9 Otomasyonun Tamamı Tek Pakette!</h3>
+                    <p>İlan nöbetçisi, otomatik kod teslimatı, kelepir sniper, destek masası, görsel düzenleyici ve PDF fatura aktarıcı tek lisans altında elinizin altında.</p>
                 </div>
             </div>
             <div class="master-banner-right">
                 <div class="master-price-box">
                     <span class="master-old-price">3.241 TL</span>
                     <span class="master-val">1.499 TL</span>
-                    <small style="color:var(--accent); font-weight:700;">%54 Tasarruf • Tek Seferlik</small>
+                    <small style="color:var(--accent-green); font-weight:700;">%54 İndirimli • Tek Seferlik Ödeme</small>
                 </div>
                 <button class="btn btn-primary btn-lg" onclick="startPurchase(99, 'NETT Master Suite (Tüm 9 Otomasyon Paketi)', 1499)">
                     <i class="fa-solid fa-gem"></i> Master Paketi Al
@@ -568,13 +568,14 @@
                     <div class="form-group">
                         <label>Ödeme Yöntemi</label>
                         <select id="paymentMethod" class="form-select">
-                            <option value="pazaryeri" selected>🛒 Online Pazaryeri / İtemsatış / GameSatış (3D Kredi Kartı / Taksit + Anında İndirme)</option>
-                            <option value="havale">🏦 FAST / Havale (7/24 Anında Aktivasyon)</option>
-                            <option value="fintech">⚡ FinTech Cüzdanlar (Papara / Tosla / Nays)</option>
+                            <option value="kredikarti" selected>💳 Kredi Kartı / Banka Kartı (3D Secure Güvenli Ödeme)</option>
+                            <option value="pazaryeri">🛒 İtemsatış / GameSatış Mağazası (Pazaryeri Güvencesiyle)</option>
+                            <option value="havale">🏦 Havale / FAST (7/24 Anında Banka Transferi)</option>
+                            <option value="fintech">⚡ Papara / Tosla / Nays (Komisyonsuz Cüzdan)</option>
                         </select>
                     </div>
 
-                    <div class="form-group" style="background:rgba(0,242,254,0.05); border:1px solid rgba(0,242,254,0.2); border-radius:10px; padding:12px; margin-top:14px; margin-bottom:18px;">
+                    <div class="form-group" style="background:rgba(234,179,8,0.06); border:1px solid rgba(234,179,8,0.25); border-radius:10px; padding:12px; margin-top:14px; margin-bottom:18px;">
                         <label style="display:flex; align-items:flex-start; gap:10px; cursor:pointer; font-size:12.5px; line-height:1.5; color:#cbd5e1;">
                             <input type="checkbox" id="orderAgreement" required style="margin-top:3px; accent-color:var(--primary); cursor:pointer;">
                             <span>
@@ -591,7 +592,7 @@
                 </form>
 
                 <div id="orderSuccessView" style="display:none; text-align:center; padding:10px 0;">
-                    <div style="font-size:42px; color:var(--accent); margin-bottom:10px;"><i class="fa-solid fa-circle-check"></i></div>
+                    <div style="font-size:42px; color:var(--accent-green); margin-bottom:10px;"><i class="fa-solid fa-circle-check"></i></div>
                     <h4 style="font-size:20px; font-weight:700; margin-bottom:6px;">Sipariş Kaydınız Alındı!</h4>
                     <p style="color:var(--text-secondary); font-size:14px; margin-bottom:14px;">Referans Kodu: <strong id="refCodeText" style="color:var(--primary); font-size:16px;">NETT-0000</strong></p>
                     <div class="payment-instructions" id="paymentDetailsBox" style="text-align:left; background:rgba(255,255,255,0.03); border:1px solid var(--border-color); border-radius:12px; padding:16px; font-size:13px; line-height:1.6; margin-bottom:16px;"></div>

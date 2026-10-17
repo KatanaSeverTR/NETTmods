@@ -81,7 +81,18 @@ function handlePurchaseSubmit(e) {
     document.getElementById('refCodeText').innerText = randomCode;
 
     let paymentInfoHtml = "";
-    if (method === "pazaryeri") {
+    if (method === "kredikarti") {
+        paymentInfoHtml = `
+            <strong>💳 3D Secure Kredi Kartı / Banka Kartı ile Güvenli Ödeme:</strong><br>
+            • <strong>Ödenecek Tutar:</strong> ${currentSelectedPlan.price} TL (Tek Seferlik)<br>
+            • <strong>Seçilen Ürün:</strong> ${currentSelectedPlan.name}<br>
+            • <strong>Güvenlik:</strong> 256-Bit SSL & Banka 3D SMS Onayı<br><br>
+            <a href="https://shopier.com" target="_blank" class="btn btn-primary btn-block" style="text-align:center; display:block; padding:12px; font-weight:700; text-decoration:none;">
+                <i class="fa-solid fa-lock"></i> Kredi Kartı ile 3D Güvenli Öde (${currentSelectedPlan.price} TL)
+            </a>
+            <small style="color:var(--text-secondary); display:block; margin-top:10px; line-height:1.5;">Ödeme onaylandığında lisans anahtarınız ve indirme linkiniz verdiğiniz e-posta ve iletişim numarasına anında iletilir.</small>
+        `;
+    } else if (method === "pazaryeri") {
         paymentInfoHtml = `
             <strong>🛒 Pazaryeri Güvencesi (3D Kredi Kartı / Taksit / Anında İndirme):</strong><br>
             • <a href="https://www.itemsatis.com" target="_blank" style="color:var(--primary); font-weight:bold; text-decoration:underline;">👉 İtemsatış Mağazamızdan Satın Al (${currentSelectedPlan.price} TL)</a><br>
